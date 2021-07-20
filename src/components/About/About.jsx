@@ -20,6 +20,7 @@ const About = () => {
       setIsMobile(true);
       setIsDesktop(false);
     }
+
   }, []);
 
   return (
@@ -60,6 +61,7 @@ const About = () => {
                     </a>
                   </span>
                 )}
+                
               </div>
             </Fade>
           </Col>

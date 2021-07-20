@@ -28,30 +28,14 @@ export const aboutData = {
 export const projectsData = [
   {
     id: nanoid(),
-    img: 'project.jpg',
-    title: '',
-    info: '',
-    info2: '',
-    url: '',
-    repo: 'https://github.com/cobidev/react-simplefolio', // if no repo, the button will not show up
-  },
-  {
-    id: nanoid(),
-    img: 'project.jpg',
-    title: '',
-    info: '',
-    info2: '',
-    url: 'https://github.com/ChrisGuy/portfolio',
-    repo: 'https://github.com/cobidev/react-simplefolio', // if no repo, the button will not show up
-  },
-  {
-    id: nanoid(),
-    img: 'project.jpg',
-    title: '',
-    info: '',
-    info2: '',
-    url: '',
-    repo: 'https://github.com/cobidev/react-simplefolio', // if no repo, the button will not show up
+    img: 'yahtzee.png',
+    title: 'Yahtzee Game',
+    info: 'A yahtzee game built out with vanilla JS.',
+    info2:
+      'I started a course to refresh my understanding of JavaScript and decided to adapt one of the simple "dice game" projects into one that handles some more logic. ',
+    tech: ['html', 'css', 'js'],
+    url: 'https://chrisguy.github.io/Yahtzee/',
+    repo: 'https://github.com/ChrisGuy/Yahtzee', // if no repo, the button will not show up
   },
 ];
 
@@ -68,11 +52,6 @@ export const footerData = {
     {
       id: nanoid(),
       name: 'twitter',
-      url: '',
-    },
-    {
-      id: nanoid(),
-      name: 'codepen',
       url: '',
     },
     {

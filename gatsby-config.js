@@ -31,5 +31,14 @@ module.exports = {
         icon: 'src/images/favicon.png',
       },
     },
+    {
+      resolve: 'gatsby-source-strapi',
+      options: {
+        apiURL: 'http://localhost:1337',
+        collectionTypes: ['article', 'author', 'category', 'portfolio', 'skill'],
+        singleTypes: ['about', 'contact', 'global', 'head', 'hero'],
+        queryLimit: 1000,
+      },
+    },
   ],
 };

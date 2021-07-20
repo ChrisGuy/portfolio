@@ -28,10 +28,10 @@ const Projects = () => {
         <div className="project-wrapper">
           <Title title="Projects" />
           {projects.map((project) => {
-            const { title, info, info2, url, repo, img, id } = project;
+            const { title, content, url, repo, img, strapiId } = project.node;
 
             return (
-              <Row key={id}>
+              <Row key={strapiId}>
                 <Col lg={4} sm={12}>
                   <Fade
                     left={isDesktop}
@@ -44,10 +44,9 @@ const Projects = () => {
                       <h3 className="project-wrapper__text-title">{title || 'Project Title'}</h3>
                       <div>
                         <p>
-                          {info ||
+                          {content ||
                             'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi neque, ipsa animi maiores repellendu distinctioaperiam earum dolor voluptatum consequatur blanditiis inventore debitis fuga numquam voluptate architecto itaque molestiae.'}
                         </p>
-                        <p className="mb-4">{info2 || ''}</p>
                       </div>
 
                       {repo && (
@@ -103,7 +102,7 @@ const Projects = () => {
                           }}
                         >
                           <div data-tilt className="thumbnail rounded">
-                            <ProjectImg alt={title} filename={img} />
+                            <ProjectImg {...img} />
                           </div>
                         </Tilt>
                       </a>

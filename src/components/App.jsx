@@ -45,7 +45,12 @@ function App() {
           content
           img {
             localFile {
-              publicURL
+              url
+              childImageSharp {
+                fluid(maxWidth: 595) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
             }
           }
           repo
@@ -90,7 +95,7 @@ function App() {
   useEffect(() => {
     setHero(data.strapiHero);
     setAbout(data.strapiAbout);
-    setProjects([...projectsData]);
+    setProjects(data.allStrapiPortfolio.edges);
     setContact(data.strapiContact);
     setFooter({ ...footerData });
   }, []);

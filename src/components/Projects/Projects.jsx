@@ -1,13 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
 import Fade from 'react-reveal/Fade';
 import Tilt from 'react-tilt';
 import { Container, Row, Col } from 'react-bootstrap';
-import PortfolioContext from '../../context/context';
 import Title from '../Title/Title';
 import ProjectImg from '../Image/ProjectImg';
 
 const Projects = () => {
-  const { projects } = useContext(PortfolioContext);
 
   const [isDesktop, setIsDesktop] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -21,6 +20,35 @@ const Projects = () => {
       setIsDesktop(false);
     }
   }, []);
+
+  const data = useStaticQuery(graphql`
+    query ProjectQuery {
+      allStrapiPortfolio {
+        edges {
+          node {
+            content
+            img {
+              localFile {
+                url
+                childImageSharp {
+                  fluid(maxWidth: 595) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+            }
+            repo
+            slug
+            strapiId
+            title
+            url
+          }
+        }
+      }
+    }
+  `)
+
+  const projects = data.allStrapiPortfolio.edges;
 
   return (
     <section id="projects">

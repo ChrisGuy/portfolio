@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
-import Fade from 'react-reveal/Fade';
-import Tilt from 'react-tilt';
-import { Container, Row, Col } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
+import { Container } from 'react-bootstrap';
 import Title from '../Title/Title';
 
 const Skills = () => {
@@ -19,16 +18,40 @@ const Skills = () => {
     }
   }, []);
 
+  const data = useStaticQuery(graphql`
+    query SkillQuery {
+      allStrapiSkill {
+        edges {
+          node {
+            title
+            devIcon
+          }
+        }
+      }
+    }
+  `)
+
+  const skills = data.allStrapiSkill.edges;
+
   return (
     <section id="skills">
       <Container>
         <div className="skills-wrapper">
           <Title title="Skills" />
-          <ul>
-              <li>Test Skill 1</li>
-              <li>Test Skill 2</li>
-              <li>Test Skill 3</li>
-          </ul>
+          <Fade
+            left={isDesktop}
+            bottom={isMobile}
+            duration={1000}
+            delay={500}
+            distance="30px"
+          >
+          {skills.map((skill) => {
+            console.log(skill);
+            return (
+              skill.node.title
+            )
+          })}
+        </Fade>
         </div>
       </Container>
     </section>

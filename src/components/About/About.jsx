@@ -1,13 +1,11 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
 import Fade from 'react-reveal/Fade';
 import { Container, Row, Col } from 'react-bootstrap';
 import Title from '../Title/Title';
 import AboutImg from '../Image/AboutImg';
-import PortfolioContext from '../../context/context';
 
 const About = () => {
-  const { about } = useContext(PortfolioContext);
-  const { img, content } = about;
 
   const [isDesktop, setIsDesktop] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -22,6 +20,17 @@ const About = () => {
     }
 
   }, []);
+
+  const data = useStaticQuery(graphql`
+    query AboutQuery {
+      strapiAbout {
+        content
+        img
+      }
+    }
+  `)
+
+  const { img, content } = data.strapiAbout;
 
   return (
     <section id="about">

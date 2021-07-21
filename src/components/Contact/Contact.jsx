@@ -1,12 +1,20 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
 import Fade from 'react-reveal/Fade';
 import { Container } from 'react-bootstrap';
-import PortfolioContext from '../../context/context';
 import Title from '../Title/Title';
 
 const Contact = () => {
-  const { contact } = useContext(PortfolioContext);
-  const { cta, btn, email } = contact;
+
+  const data = useStaticQuery(graphql`
+    query ContactQuery {
+      strapiContact {
+        email
+      }
+    }
+  `)
+
+  const { email } = data.strapiContact;
 
   return (
     <section id="contact">
@@ -15,7 +23,7 @@ const Contact = () => {
         <Fade bottom duration={1000} delay={800} distance="30px">
           <div className="contact-wrapper">
             <p className="contact-wrapper__text">
-              Would you like to work with me? Great!
+              Like what you see and would like to work with me?
             </p>
             <a
               target="_blank"

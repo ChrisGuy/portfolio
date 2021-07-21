@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ReactMarkdown from "react-markdown"
 import { useStaticQuery, graphql } from 'gatsby';
 import Fade from 'react-reveal/Fade';
 import Tilt from 'react-tilt';
@@ -66,8 +67,7 @@ const Blog = () => {
                       <h2 className="blog-header">{headline || 'Project Title'}</h2>
                       <div className="blog-content">
                         <p>
-                          {Excerpt ||
-                            'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi neque, ipsa animi maiores repellendu distinctioaperiam earum dolor voluptatum consequatur blanditiis inventore debitis fuga numquam voluptate architecto itaque molestiae.'}
+                          <ReactMarkdown>{Excerpt}</ReactMarkdown> 
                         </p>
                         <a
                           target="_blank"

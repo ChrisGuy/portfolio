@@ -36,7 +36,7 @@ const Blog = () => {
             }
             headline
             content
-            Excerpt
+            excerpt
           }
         }
       }
@@ -50,50 +50,51 @@ const Blog = () => {
       <Container>
         <div className="blog-wrapper">
           <Title title="Blog" />
-          {articles.map((article) => {
-            const { headline, content, Excerpt, slug, image, published_at, strapiId } = article.node;
+
+          <div className="blog-banner">
+          {articles.slice(0,3).map((article) => {
+            const { headline, excerpt, slug, strapiId } = article.node;
 
             return (
-              <Row key={strapiId}>
-                <Col lg={4} sm={12}>
-                  <Fade
-                    left={isDesktop}
-                    bottom={isMobile}
-                    duration={1000}
-                    delay={500}
-                    distance="30px"
+              <Tilt
+                options={{
+                  reverse: false,
+                  max: 8,
+                  perspective: 1000,
+                  scale: 1,
+                  speed: 300,
+                  transition: true,
+                  axis: null,
+                  reset: true,
+                  easing: 'cubic-bezier(.03,.98,.52,.99)',
+                }}
+              >
+                  <a
+                    href={'/articles/' + slug }
+                    aria-label="Project Link"
+                    rel="noopener noreferrer"
                   >
                     <div className="blog-card">
                       <h2 className="blog-header">{headline || 'Project Title'}</h2>
                       <div className="blog-content">
-                        <p>
-                          <ReactMarkdown>{Excerpt}</ReactMarkdown> 
+                        <p className="blog-excerpt">
+                          <ReactMarkdown>{excerpt}</ReactMarkdown> 
                         </p>
                         <a
                           target="_blank"
                           rel="noopener noreferrer"
                           className="cta-btn cta-btn--hero text-color-main"
-                          href='#!'
+                          href={'/articles/' + slug }
                         >
                           Read More!
                         </a>
                       </div>
                     </div>
-                  </Fade>
-                </Col>
-                <Col lg={8} sm={12}>
-                  <Fade
-                    right={isDesktop}
-                    bottom={isMobile}
-                    duration={1000}
-                    delay={1000}
-                    distance="30px"
-                  >
-                  </Fade>
-                </Col>
-              </Row>
+                  </a>
+              </Tilt>
             );
           })}
+          </div>
         </div>
       </Container>
     </section>

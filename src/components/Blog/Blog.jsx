@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactMarkdown from "react-markdown"
 import { useStaticQuery, graphql } from 'gatsby';
+import Img from 'gatsby-image';
 import Fade from 'react-reveal/Fade';
 import Tilt from 'react-tilt';
 import { Container, Row, Col } from 'react-bootstrap';
@@ -32,6 +33,11 @@ const Blog = () => {
             image {
               localFile {
                 publicURL
+                childImageSharp {
+                  fluid(maxWidth: 595) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
               }
             }
             headline
@@ -45,6 +51,7 @@ const Blog = () => {
 
   const articles = data.allStrapiArticle.edges;
 
+
   return (
     <section id="blog">
       <Container>
@@ -52,8 +59,10 @@ const Blog = () => {
           <Title title="Blog" />
 
           <div className="blog-banner">
-          {articles.slice(0,3).map((article) => {
-            const { headline, excerpt, slug, strapiId } = article.node;
+          {articles.slice(articles.length -3, articles.length).map((article) => {
+            const { headline, slug, image, strapiId } = article.node;
+
+            const imageFluid = image.localFile.childImageSharp.fluid;
 
             return (
               <Tilt
@@ -68,6 +77,7 @@ const Blog = () => {
                   reset: true,
                   easing: 'cubic-bezier(.03,.98,.52,.99)',
                 }}
+                key={strapiId}
               >
                   <a
                     href={'/articles/' + slug }
@@ -75,18 +85,17 @@ const Blog = () => {
                     rel="noopener noreferrer"
                   >
                     <div className="blog-card">
+                      <Img fluid={imageFluid} />
                       <h2 className="blog-header">{headline || 'Project Title'}</h2>
                       <div className="blog-content">
-                        <p className="blog-excerpt">
-                          <ReactMarkdown>{excerpt}</ReactMarkdown> 
-                        </p>
+                        
                         <a
                           target="_blank"
                           rel="noopener noreferrer"
                           className="cta-btn cta-btn--hero text-color-main"
                           href={'/articles/' + slug }
                         >
-                          Read More!
+                          Read Me!
                         </a>
                       </div>
                     </div>

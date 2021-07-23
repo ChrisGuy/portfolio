@@ -1,8 +1,6 @@
 #blog {
     background-color: $white-color;
     color: $dark-blue-text;
-    padding-top: 5rem;
-    padding-bottom: 15rem;
 
     a {
         text-decoration: none;
@@ -12,7 +10,9 @@
     .blog-banner {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-gap: 1rem
+        grid-gap: 1rem;
+        padding-bottom: 15rem;
+        direction: rtl;
     }
 
     .blog-card {
@@ -27,8 +27,8 @@
         text-transform: capitalize;
     }
 
-    .blog-excerpt {
-        padding: 1.5rem 0 2rem;
+    .blog-content {
+        direction: ltr;
     }
 
 }
